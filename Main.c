@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <math.h>
 int main() {
     float fn, sn, res;
@@ -7,7 +6,6 @@ int main() {
     scanf("%f", &fn);
     printf("Enter second number: ");
     scanf("%f", &sn);
-    //system("cls");
     printf("%.10g  [x]  %.10g\n"
            "Operations:"
            "\nAddition a+b (1)"
@@ -18,7 +16,7 @@ int main() {
            "\nPower a^b (6)", fn, sn);
     printf("\n\nEnter your choice: ");
     int choice;
-    scanf("%d", &choice);
+    scanf(" %d", &choice);
 
     switch (choice) {
         case 1: {
@@ -41,19 +39,19 @@ int main() {
                 printf("Division by zero");
                 break;
             }
-            printf("%.10g / %.10g = %.10g",fn,sn,res=fn/sn);
-            printf("\nResult = %.10g",res);
+            printf("%.10g / %.10g = %.3g",fn,sn,res=fn/sn);
+            printf("\nResult = %.3g",res);
             break;
         }
         case 5:{
-            printf("Choose number to root: ");
+            printf("Choose number to root(a/b): ");
             char choiceCh;
             double root;
-            scanf("%c",&choiceCh);
+            scanf(" %c",&choiceCh);
             if(choiceCh == 'a' || choiceCh == 'A'){
-                printf("Square root of a = %.10g is: %.10g",res=sqrt(fn),root=sqrt(fn));
+                printf("Square root of a = %.10g is: %.10g",fn,root=sqrt(fn));
             }else if(choiceCh == 'b' || choiceCh == 'B'){
-                printf("Square root of b = %.10g is: %.10g",res=sqrt(sn),root=sqrt(sn));
+                printf("Square root of b = %.10g is: %.10g",sn,root=sqrt(sn));
             }
             break;
         }
