@@ -1,29 +1,25 @@
 #include <stdio.h>
 #include <math.h>
 #include <stdbool.h>
+
+void printOperations();
 int main() {
     int choice;
     bool conti = true;
-    printf("\twelcome to calculator\nPick an operation.\n");
-    printf("a [x]  b\n"
-           "Operations:"
-           "\nAddition a+b (1)"
-           "\nSubtraction a-b (2)"
-           "\nMultiplication a*b (3)"
-           "\nDivision a/b (4)"
-           "\nRoot (5)"
-           "\nPower a^b (6)"
-           "\nExit (7)");
-    printf("\n\nEnter your choice(1-7): ");
+    printf("\twelcome to calculator\n\tPick an operation:\n\n");
+    printOperations();
     scanf(" %d", &choice);
     float fn, sn, res;
-    if (choice != 5) {
+    if (choice != 5 && choice != 7) {
         printf("Enter first number: ");
         scanf("%f", &fn);
         printf("Enter second number: ");
         scanf("%f", &sn);
+    }else if (choice != 7) {
+        printf("Enter number to root: ");
+        scanf("%f", &fn);
     }
-    while (conti) {
+    while (1) {
         switch (choice) {
             case 1: {
                 printf("%.10g + %.10g = %.10g", fn, sn, res = fn + sn);
@@ -50,24 +46,8 @@ int main() {
                 break;
             }
             case 5: {
-
-                char choiceCh;
-                bool again = true;
-                double root;
-
-                while(again) {
-                    printf("Choose number to root(a/b): ");
-                    scanf(" %c", &choiceCh);
-                    if (choiceCh == 'a' || choiceCh == 'A') {
-                        printf("Square root of a = %.10g is: %.10g", fn, root = sqrt(fn));
-                        again = false;
-                    } else if (choiceCh == 'b' || choiceCh == 'B') {
-                        printf("Square root of b = %.10g is: %.10g", sn, root = sqrt(sn));
-                        again = false;
-                    } else {
-                        printf("Invalid input, try again.\n");
-                    }
-                }
+                printf("Square root of %.10g is: %.10g", fn, res = sqrtf(fn));
+                printf("\nResult = %.10g", res);
                 break;
             }
             case 6: {
@@ -91,9 +71,29 @@ int main() {
         scanf(" %c", &choiceCh);
 
         if (choiceCh != 'y' && choiceCh != 'Y') {
-            conti = false;
+            break;
         }
-        printf("\n\nYour first number is ");
+        fn=res;
+        printf("\n\nYour first number is: %.10g.\n",fn);
+        printf("Pick an operation.\n");
+        printOperations();
+        scanf(" %d", &choice);
+        if (choice != 5 && choice != 7) {
+            printf("Enter second number: ");
+            scanf("%f", &sn);
+        }
     }
     return 0;
+}
+void printOperations() {
+    printf("a [x]  b\n"
+           "Operations:"
+           "\nAddition a+b (1)"
+           "\nSubtraction a-b (2)"
+           "\nMultiplication a*b (3)"
+           "\nDivision a/b (4)"
+           "\nRoot (5)"
+           "\nPower a^b (6)"
+           "\nExit (7)");
+    printf("\n\nEnter your choice(1-7): ");
 }
